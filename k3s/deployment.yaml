@@ -33,21 +33,20 @@ spec:
     - protocol: TCP
       port: 8888
       targetPort: 8888
+  type: LoadBalancer
 ---
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
 metadata:
-  name: wils-playground-ingress
+  name: wils-service
   namespace: dev
-
 spec:
-  rules:
-    - http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: wils-service
-                port:
-                  number: 8888
+  entryPoints:
+  - web
+  routes:
+  - kind: Rule
+    match: PathPrefix(`/`)
+    services:
+    - name: wils-service
+      port: 8888
+
