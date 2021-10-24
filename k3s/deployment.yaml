@@ -37,8 +37,8 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: foo
-  namespace: production
+  name: wils-playground-ingress
+  namespace: dev
 
 spec:
   rules:
