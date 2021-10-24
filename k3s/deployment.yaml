@@ -42,7 +42,8 @@ metadata:
   namespace: dev
 spec:
   entryPoints:
-  - web
+    specificIPv4:
+      address: "192.168.42.20:8888"
   routes:
   - kind: Rule
     match: PathPrefix(`/`)
