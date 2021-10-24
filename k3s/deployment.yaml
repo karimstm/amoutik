@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wils-playground-deployment
+  labels:
+    app: wils-playground
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wils-playground
+  template:
+    metadata:
+      labels:
+        app: wils-playground
+    spec:
+      containers:
+        - name: wil42/playground
+          image: wil42/playground:v1
+          ports:
+            - containerPort: 8888
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wils-service
+spec:
+  selector:
+    app: wils-playground
+  ports:
+    - protocol: TCP
+      port: 8888
+      targetPort: 8888
