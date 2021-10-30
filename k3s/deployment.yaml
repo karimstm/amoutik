@@ -34,20 +34,4 @@ spec:
       port: 8888
       targetPort: 8888
   type: LoadBalancer
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
-metadata:
-  name: wils-service
-  namespace: dev
-spec:
-  entryPoints:
-    specificIPv4:
-      address: "192.168.42.20:8888"
-  routes:
-  - kind: Rule
-    match: PathPrefix(`/`)
-    services:
-    - name: wils-service
-      port: 8888
 
